@@ -1,2 +1,36 @@
 ---
+# -- wil-playgroud -- #
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wil-playgroud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wil-playgroud
+  template:
+    metadata:
+      labels:
+        app: wil-playgroud
+    spec:
+      containers:
+      - name: wil-playgroud
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
 
+apiVersion: v1
+kind: Service
+metadata:
+  name: wil-playgroud
+spec:
+  selector:
+    app: wil-playgroud
+  ports:
+  - port: 80
+    targetPort: 80
