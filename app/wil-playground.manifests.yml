@@ -30,3 +30,21 @@ spec:
   ports:
   - port: 80
     targetPort: 8888
+---
+# -- Ingress -- #
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+spec:
+  rules:
+  - host: 
+    http:
+      paths:
+      - backend:
+          service:
+            name: wil-playgroud
+            port: 
+              number: 80
+        path: "/"
+        pathType: Prefix
