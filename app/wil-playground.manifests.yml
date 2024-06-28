@@ -17,10 +17,6 @@ spec:
       containers:
       - name: wil-playgroud
         image: wil42/playground:v1
-        resources:
-          limits:
-            memory: "250Mi"
-            cpu: "500m"
         ports:
         - containerPort: 80
 ---
