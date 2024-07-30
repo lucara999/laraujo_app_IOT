@@ -23,11 +23,28 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: wil-playground
+  name: wil-playgroud
 spec:
-  type: LoadBalancer
+  selector:
+    app: wil-playgroud
   ports:
   - port: 80
     targetPort: 8888
-  selector:
-    app: wil-playground
+---
+# -- Ingress -- #
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+spec:
+  rules:
+  - host: 
+    http:
+      paths:
+      - backend:
+          service:
+            name: wil-playgroud
+            port: 
+              number: 80
+        path: "/"
+        pathType: Prefix
